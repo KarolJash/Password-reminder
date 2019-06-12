@@ -1,0 +1,37 @@
+import csv
+import pandas as pd
+
+#You can name your file anything nut mine is called text
+filename = 'text.csv'
+
+with open(filename, 'r') as current:
+    csv_reader = csv.reader(current)
+
+    for line in csv_reader:
+        App1 = line[0]
+        User1 = line[1]
+        Pass1 = line[2]
+
+df1 = pd.DataFrame({
+    'What': ['App', 'User', 'Pass'],
+    'Info1': [App1, User1, Pass1],
+})
+print(df1)
+
+App2 = input()
+User2 = input()
+Pass2 = input()
+
+df2 = pd.DataFrame({
+    'What':['App', 'User', 'Pass'],
+    'Info2': [App2, User2, Pass2],
+})
+
+df3 = pd.merge(df1, df2, on='What')
+
+print('Username and Password where saved successfully!')
+
+#This is me seconde csv file wich is named test, but you can name it anything you want
+with open('test.csv', 'w', newline='') as data:
+    data_infos = csv.writer(data)
+    data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
