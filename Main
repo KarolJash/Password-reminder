@@ -1,0 +1,15 @@
+User = 'KJ#33'
+Pass = '1234'
+
+if input('Plaese enter your username') == User:
+    if input('Plaese enter your password') == Pass:
+        if input('Welcome Karol, would you like to add a Password') == 'yes':
+            import Add
+            Add
+        elif input() == 'no':
+            import Read
+            Read
+    else:
+        print('Youre not Karol. Back off!');
+else:
+    print('Youre not Me. Back off1!');
