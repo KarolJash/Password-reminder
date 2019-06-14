@@ -166,4 +166,4 @@ except:
 
         with open('test.csv', 'w', newline='') as data:
             data_infos = csv.writer(data)
-            data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
+            data_infos.writerow([App1, User1, Pass1])
