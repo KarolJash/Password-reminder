@@ -1,30 +1,56 @@
 import csv
 import pandas as pd
 
-#This is the name of my csv file but your csv file name can be what ever you want. You just will have to switch test.csv, the value of the variable filename
 filename = 'test.csv'
 
 with open(filename, 'r') as current:
     csv_reader = csv.reader(current)
 
     for line in csv_reader:
+        print(line)
+try:
+    if line[0] != 0:
         App1 = line[0]
         User1 = line[1]
         Pass1 = line[2]
-        App2 = line[3]
-        User2 = line[4]
-        Pass2 = line[5]
 
-df1 = pd.DataFrame({
-    'What': ['App', 'User', 'Pass'],
-    'Info1': [App1, User1, Pass1],
-})
+        df1 = pd.DataFrame({
+            'What': ['App', 'User', 'Pass'],
+            'Info1': [App1, User1, Pass1],
+        })
+        try:
+            if line[3] != 0:
+                App2 = line[3]
+                User2 = line[4]
+                Pass2 = line[5]
 
-df2 = pd.DataFrame({
-    'What': ['App', 'User', 'Pass'],
-    'Info2': [App2, User2, Pass2],
-})
+                df2 = pd.DataFrame({
+                   'What': ['App', 'User', 'Pass'],
+                    'Info2': [App2, User2, Pass2],
+                })
 
-df3 = pd.merge(df1, df2, on='What')
+                df3 = pd.merge(df1, df2, on='What')
 
-print(df3);
+                try:
+                   if line[6] != 0:
+                    App3 = line[6]
+                    User3 = line[7]
+                    Pass3 = line[8]
+
+                    df4 = pd.DataFrame({
+                       'What': ['App', 'User', 'Pass'],
+                       'Info3': [App3, User3, Pass3]
+                    })
+
+                    df5 = pd.merge(df3, df4, on='What')
+                    print(df5)
+                except:
+                  print(df3)
+        except:
+            print(df1)
+except:
+    if input('You have no passwords, would you like to add some') == 'yes':
+        import Add
+        Add
+    else:
+        quit()
