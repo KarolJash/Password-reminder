@@ -1,37 +1,169 @@
 import csv
 import pandas as pd
 
-#You can name your file anything nut mine is called text
-filename = 'text.csv'
+filename = 'test.csv'
 
 with open(filename, 'r') as current:
     csv_reader = csv.reader(current)
 
     for line in csv_reader:
-        App1 = line[0]
-        User1 = line[1]
-        Pass1 = line[2]
+        print(line)
 
-df1 = pd.DataFrame({
-    'What': ['App', 'User', 'Pass'],
-    'Info1': [App1, User1, Pass1],
-})
-print(df1)
+try:
+        if line[0] != 0:
+          App1 = line[0]
+          User1 = line[1]
+          Pass1 = line[2]
 
-App2 = input()
-User2 = input()
-Pass2 = input()
+          df1 = pd.DataFrame({
+              'What': ['App', 'User', 'Pass'],
+              'Info1': [App1, User1, Pass1],
+          })
 
-df2 = pd.DataFrame({
-    'What':['App', 'User', 'Pass'],
-    'Info2': [App2, User2, Pass2],
-})
+          try:
+              if line[3] != 0:
+                  App2 = line[3]
+                  User2 = line[4]
+                  Pass2 = line[5]
 
-df3 = pd.merge(df1, df2, on='What')
+                  df2 = pd.DataFrame({
+                      'What': ['App', 'User', 'Pass'],
+                      'Info2': [App2, User2, Pass2],
+                  })
 
-print('Username and Password where saved successfully!')
+                  df3 = pd.merge(df1, df2, on='What')
 
-#This is me seconde csv file wich is named test, but you can name it anything you want
-with open('test.csv', 'w', newline='') as data:
-    data_infos = csv.writer(data)
-    data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
+                  try:
+                      if line[6] != 0:
+                          App3 = line[6]
+                          User3 = line[7]
+                          Pass3 = line[8]
+
+                          df4 = pd.DataFrame({
+                              'What': ['App', 'User', 'Pass'],
+                              'Info3': [App3, User3, Pass3],
+                          })
+
+                          df5 = pd.merge(df3, df4, on='What')
+                          print(df5)
+
+                  except:
+                      if input('Would you like to add another username') == 'yes':
+                          App3 = input()
+                          User3 = input()
+                          Pass3 = input()
+
+                          df4 = pd.DataFrame({
+                              'What': ['App', 'User', 'Pass'],
+                              'Info3': [App3, User3, Pass3],
+                          })
+
+                          df5 = pd.merge(df3, df4, on='What')
+                          print(df5)
+
+                          with open('test.csv', 'w', newline='') as data3:
+                              data3_infos = csv.writer(data3)
+                              data3_infos.writerow([App1, User1, Pass1, App2, User2, Pass2, App3, User3, Pass3])
+
+                      else:
+                          print('Username and Password where saved successfully!')
+
+                          with open('test.csv', 'w', newline='') as data:
+                              data_infos = csv.writer(data)
+                              data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
+          except:
+              df1 = pd.DataFrame({
+                  'What': ['App', 'User', 'Pass'],
+                  'Info1': [App1, User1, Pass1],
+              })
+              print(df1)
+
+              if input('Would you like to add more users') == 'yes':
+                  App2 = input()
+                  User2 = input()
+                  Pass2 = input()
+
+                  df2 = pd.DataFrame({
+                      'What': ['App', 'User', 'Pass'],
+                      'Info2': [App2, User2, Pass2],
+                  })
+
+                  df3 = pd.merge(df1, df2, on='What')
+
+                  if input('Would you like to add another username') == 'yes':
+                      App3 = input()
+                      User3 = input()
+                      Pass3 = input()
+
+                      df4 = pd.DataFrame({
+                          'What': ['App', 'User', 'Pass'],
+                          'Info3': [App3, User3, Pass3],
+                      })
+
+                      df5 = pd.merge(df3, df4, on='What')
+                      print(df5)
+
+                      with open('test.csv', 'w', newline='') as data3:
+                          data3_infos = csv.writer(data3)
+                          data3_infos.writerow([App1, User1, Pass1, App2, User2, Pass2, App3, User3, Pass3])
+
+                  else:
+                      print('Username and Password where saved successfully!')
+
+                      with open('test.csv', 'w', newline='') as data:
+                          data_infos = csv.writer(data)
+                          data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
+except:
+    print('Please add the name of the app, the username and the password')
+
+    App1 = input()
+    User1 = input()
+    Pass1 = input()
+
+    df1 = pd.DataFrame({
+        'What': ['App', 'User', 'Pass'],
+        'Info1': [App1, User1, Pass1],
+    })
+    print(df1)
+
+    if input('Would you like to add another user') == 'yes':
+        App2 = input()
+        User2 = input()
+        Pass2 = input()
+
+        df2 = pd.DataFrame({
+            'What': ['App', 'User', 'Pass'],
+            'Info2': [App2, User2, Pass2],
+        })
+
+        df3 = pd.merge(df1, df2, on='What')
+
+        if input('Would you like to add another username') == 'yes':
+            App3 = input()
+            User3 = input()
+            Pass3 = input()
+
+            df4 = pd.DataFrame({
+                'What': ['App', 'User', 'Pass'],
+                'Info3': [App3, User3, Pass3],
+            })
+
+            df5 = pd.merge(df3, df4, on='What')
+            print(df5)
+
+            with open('test.csv', 'w', newline='') as data3:
+                data3_infos = csv.writer(data3)
+                data3_infos.writerow([App1, User1, Pass1, App2, User2, Pass2, App3, User3, Pass3])
+
+        else:
+            print('Username and Password where saved successfully!')
+
+            with open('test.csv', 'w', newline='') as data:
+                data_infos = csv.writer(data)
+                data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
+    else:
+        print('Username and Password where saved successfully!')
+
+        with open('test.csv', 'w', newline='') as data:
+            data_infos = csv.writer(data)
+            data_infos.writerow([App1, User1, Pass1, App2, User2, Pass2])
